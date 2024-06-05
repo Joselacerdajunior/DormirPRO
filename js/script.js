@@ -62,7 +62,7 @@ function loadPage(page, isComponent = false, header = null, footer = null) {
 
 function initializeApp() {
     //return loadPage('home', isComponent=false, header='header', footer='footer');
-    return loadPage('login');
+    //return loadPage('login');
     
     loadPage('start');
 
