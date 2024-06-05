@@ -63,7 +63,7 @@ function loadPage(page, isComponent = false, header = null, footer = null) {
 }
 
 function initializeApp() {
-    return loadPage('home', isComponent=false, header='header', footer='footer');
+    //return loadPage('home', isComponent=false, header='header', footer='footer');
     //return loadPage('login');
     
     loadPage('start');
@@ -77,7 +77,7 @@ function initializeApp() {
     }, 3.3 * 1000);
 
     setTimeout(() => {
-        loadPage('home', isComponent=false, header='header', footer='footer');
+        loadPage('login');
     }, 4 * 1000);
 }
 
