@@ -1,1 +1,170 @@
-<h1>Registre-se</h1>
+<!-- <h1>Login</h1>
+<p>preciso terminar a tela</p>
+<a href="#" onclick="loadPage('home', isComponent=false, header='header', footer='footer')">Ir para o home →</a> -->
+
+<section id="login-section">
+  <div id="container">
+    <div class="img-container">
+      <img src="../DormirPRO/assets/dormir-pro-branco.svg" onerror="this.onerror=null;this.src='../assets/dormir-pro-branco.svg'" alt="Logo">
+      <span>Dormir PRO</span>
+    </div>
+
+    <p>Login</p>
+
+    <div class="input-div-1">
+      <img src="../DormirPRO/assets/user.png" onerror="this.onerror=null;this.src='../assets/user.png'" alt="Logo user">
+      <input type="text" name="text" id="text" placeholder="Login">
+    </div>
+
+    <div class="input-div-1">
+      <img src="../DormirPRO/assets/email.png" onerror="this.onerror=null;this.src='../assets/email.png'" alt="Logo email">
+      <input type="email" name="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-div-2">
+      <img src="../DormirPRO/assets/senha.png" onerror="this.onerror=null;this.src='../assets/senha.png'" alt="Logo senha">
+      <div>
+        <input type="password" name="password" id="password" placeholder="Senha">
+        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir">
+      </div>
+    </div>
+
+    <div class="input-div-2">
+      <img src="../DormirPRO/assets/senha.png" onerror="this.onerror=null;this.src='../assets/senha.png'" alt="Logo senha">
+      <div>
+        <input type="password" name="password2" id="password2" placeholder="Confirme senha">
+        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir">
+      </div>
+    </div>
+
+    <input type="button" value="Log In" onclick="loadPage('home', isComponent=false, header='header', footer='footer')">
+
+    <span>
+      Já é cadastrado?
+      <br>
+      <a href="#" onclick="loadPage('login')">Clique aqui para fazer login.</a>      
+    </span>
+  </div>
+</section>
+
+
+<style>
+  #login-section {
+    width: 100%;
+    height: 100%;
+    background-image: url('../DormirPRO/assets/bg-skye.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #login-section #container {
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1.9rem;
+    border-radius: 2rem;
+  }
+
+  #login-section #container .img-container {
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  #login-section #container > p {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    color: var(--text-white);
+  }
+
+  #login-section #container .img-container img {
+    width: 6rem;
+    height: auto;
+  }
+
+  #login-section #container .img-container span {
+    color: var(--text-white);
+  }
+
+  #login-section #container .input-div-1,
+  #login-section #container .input-div-2 {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: .6rem;
+  }
+
+  #login-section #container .input-div-1 > img,
+  #login-section #container .input-div-2 > img,
+  #login-section #container .input-div-2 div > img {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+  }
+  
+  #login-section #container .input-div-1 > img,
+  #login-section #container .input-div-2 > img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(.5rem, -50%);
+    filter: invert(30%);
+  }
+  
+  #login-section #container .input-div-2 div > img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-.5rem, -50%);
+    filter: invert(30%);
+  }
+
+  #login-section #container .input-div-2 > div {
+    height: 100%;
+    width: 100%;
+  }
+
+  #login-section #container .input-div-1 > input,
+  #login-section #container .input-div-2 > div > input {
+    height: 100%;
+    width: 100%;
+    padding-left: 3rem;
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+  }
+  
+  #login-section #container > input {
+    height: 2rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    outline: none;
+    border: none;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: .5rem;
+    background-color: rgb(248, 248, 255);
+  }
+
+  #login-section #container > span {
+    color: var(--text-white);
+    font-size: .9rem;
+  }
+  
+  #login-section #container > span a {
+    color: var(--text-white);
+    font-size: .9rem;
+  }
+
+</style>
