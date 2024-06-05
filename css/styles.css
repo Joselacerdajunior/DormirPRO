@@ -1,29 +1,38 @@
-body {
-  font-family: Arial, sans-serif;
+@import url('fonts/Roboto/roboto.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
 
-header {
-  background-color: #333;
-  color: white;
-  padding: 1em 0;
+body {  
+  font-family: 'Roboto', sans-serif;
+  background: var(--background-color);
+  height: 100vh;
 }
 
-nav ul {
-  list-style: none;
+#app {
+  height: 100%;
   display: flex;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: 0 1em;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
+  flex-direction: column;
 }
 
 #content {
-  padding: 2em;
   text-align: center;
+  position: relative;
+  flex: 1;
+}
+
+@media (max-width: 799px) {
+  #content {
+    padding: 3rem 1rem 1rem calc(4.7rem + 1rem) !important;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  #content {
+    padding: 3rem 2rem 1rem calc(4.7rem + 2rem) !important;
+  }
 }

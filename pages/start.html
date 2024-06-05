@@ -1,1 +1,55 @@
-<h1>Tela de apresentação</h1>
+<div id="start-container">
+  <div id="start-content" class="animate__animated animate__fadeIn">
+    <img src="../assets/dormir-pro-branco.svg" alt="Logotipo">
+    <span>Dormir PRO</span>
+    <div class="loader"></div>
+  </div>
+</div>
+
+<style>
+  #start-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+  }
+  
+  #start-container img {
+    width: 15rem;
+  }
+
+  #start-content {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #start-content span {
+    font-size: 2.5rem;
+    margin-top: .5rem;
+    font-weight: bold;
+    color: var(--text-white);
+  }
+
+  #start-content .loader {
+    border: 8px solid 0;
+    border-top: 4px solid var(--text-white);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1.5s linear infinite;
+    margin-top: 3rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>

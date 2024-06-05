@@ -1,0 +1,319 @@
+<header>
+  <a href="#" onclick="loadPage('home')" class="icone">
+    <img src="../assets/dormir-pro-branco.svg" alt="Início">
+    <span>Dormir PRO</span>
+  </a>
+  <nav>
+    <div id="nav-menu">
+      <img id="nav-menu-open" src="../assets/expandir-menu.png" alt="Expandir Menu" onclick="changeNavMenu(true)">
+      <img id="nav-menu-close" src="../assets/recolher-menu.png" alt="Recolher Menu" onclick="changeNavMenu(false)">
+    </div>
+    <ul>
+      <li><a href="#" onclick="loadPage('home')"><img src="../assets/inicio.png" alt="Ícone Início"><span class="hidden-nav-menu hidden">Início</span></a></li>
+      <li><a href="#" onclick="loadPage('modules')"><img src="../assets/modulos.png" alt="Ícone Módulos"><span class="hidden-nav-menu hidden">Módulos</span></a></li>
+      <li><a href="#" onclick="loadPage('reports')"><img src="../assets/relatorios.png" alt="Ícone Relatórios"><span class="hidden-nav-menu hidden">Relatórios</span></a></li>
+      <li><a href="#" onclick="loadPage('plans')"><img src="../assets/diamante.png" alt="Ícone Assinatura"><span class="hidden-nav-menu hidden">Assinatura</span></a></li>
+      <li><a href="#" onclick="loadPage('help')"><img src="../assets/ajuda.png" alt="Ícone Ajuda"><span class="hidden-nav-menu hidden">Ajuda</span></a></li>
+    </ul>
+  </nav>
+  <div>
+    <a id="notification" href="#" onclick="loadPage('notifications', isComponent=true)">
+      <img src="../assets/notification.png" alt="Notificações">
+      <span id="notification-number"></span>
+    </a>
+    <a href="#" id="profile-link" onclick="loadPage('profile-options', isComponent=true)">
+      <div id="profile-text">
+        <p>Bem vindo,</p>
+        <span>Default!</span>
+      </div>
+      <img src="../assets/profile-default.png" alt="Opções de perfil">
+    </a>
+  </div>
+  <div id="nav-out-click-detector" onclick="changeNavMenu(null)"></div>
+</header>
+
+
+<style>
+  header {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    padding: .5em 2.5rem;
+    width: 100%;
+    height: var(--header-height);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header > a {
+    display: flex;
+    justify-content: left;
+    align-items: end;
+    text-decoration: none;
+    color: var(--text-white);
+    font-weight: bold;
+    gap: .5rem;
+    width: calc(10rem + 50px);
+  }
+
+  header a img {
+    width: 3rem;
+  }
+
+  header a span {    
+    font-size: 1.1rem;
+  }
+
+  header #nav-out-click-detector {
+    display: none;
+  }
+
+  header nav #nav-menu {
+    display: none;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  header nav #nav-menu img {
+    width: 40px;
+    height: 40px;
+  }
+
+  header nav #nav-menu img:first-of-type {
+    display: block;
+  }
+
+  header nav #nav-menu img:last-of-type {
+    display: none;
+  }
+
+  header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  header nav ul li a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header nav ul li a img {
+    height: 25px;
+    width: 25px;
+    margin-bottom: .5rem;
+  }
+
+  header > div {
+    display: flex;
+  }
+
+  header > div a:first-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
+  
+  header > div a:first-of-type img {
+    height: 35px;
+    width: 35px;
+  }
+  
+  header > div a:first-of-type #notification-number {
+    background-color: rgb(207, 56, 56);
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    display: block;
+  }
+
+  header > div a:last-of-type {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 10rem;
+    text-decoration: none;
+    color: var(--text-white);
+    font-size: .8rem;
+    text-align: center;
+  }
+  
+  header > div a:last-of-type span {
+    width: min-content;
+  }
+
+  header > div a:last-of-type img {
+    border: 2px solid var(--text-white);
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    margin-left: .5rem;
+  }
+
+  @media (max-width: 799px) {
+    header #nav-out-click-detector {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    header nav {
+      background-color: var(--secondary-color);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      height: calc(100vh - var(--header-height) - var(--footer-height));
+      min-width: 4.7rem;
+      padding: .5rem .7rem;
+      z-index: 11;
+    }
+    
+    header nav #nav-menu {
+      display: flex;
+    }
+
+    header nav ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    header nav ul li:nth-last-child(1) {
+      position: fixed;
+      bottom: calc(35px + (3rem / 2) - (3rem / 2));
+    }
+    
+    header nav ul li:nth-last-child(2) {
+      position: fixed;
+      bottom: calc(35px + 3rem + (3rem / 2));
+    }
+
+    header nav ul li a {
+      display: flex;
+      flex-direction: row;
+    }
+
+    header nav ul li a img {
+      width: 35px;
+      height: 35px;
+      margin: 0;
+      margin-left: calc(15px / 2);
+    }
+
+    header nav ul li a span {
+      margin-left: 1rem;
+      margin-right: .5rem;
+      font-weight: 400;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #profile-text {
+      display: none;
+    }
+
+    #profile-link {
+      width: fit-content;
+      margin-left: 1rem;
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 1200px) {
+    header #nav-out-click-detector {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    header nav {
+      background-color: var(--secondary-color);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      height: calc(100vh - var(--header-height) - var(--footer-height));
+      width: auto;
+      padding: .5rem .7rem;
+      z-index: 11;
+    }
+    
+    header nav #nav-menu {
+      display: flex;
+    }
+
+    header nav ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    header nav ul li:nth-last-child(1) {
+      position: fixed;
+      bottom: calc(35px + (3rem / 2) - (3rem / 2));
+    }
+    
+    header nav ul li:nth-last-child(2) {
+      position: fixed;
+      bottom: calc(35px + 3rem + (3rem / 2));
+    }
+
+    header nav ul li a {
+      display: flex;
+      flex-direction: row;
+    }
+
+    header nav ul li a img {
+      width: 35px;
+      height: 35px;
+      margin: 0;
+      margin-left: calc(15px / 2);
+    }
+
+    header nav ul li a span {
+      margin-left: 1rem;
+      margin-right: .5rem;
+      font-weight: 400;
+    }
+
+    .hidden {
+      display: none;
+    }
+  }
+</style>
