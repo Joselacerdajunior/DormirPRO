@@ -26,7 +26,6 @@ function loadPage(page, isComponent = false, header = null, footer = null) {
 
                 const app = document.getElementById('app');
                 app.insertBefore(fragment, app.firstChild);
-                setBodyStyle();
             })
             .catch(error => {
                 const errorElement = document.createElement('p');
@@ -49,7 +48,6 @@ function loadPage(page, isComponent = false, header = null, footer = null) {
                 footerContent.forEach(node => fragment.appendChild(node));
 
                 document.getElementById('app').appendChild(fragment);
-                setBodyStyle();
             })
             .catch(error => {
                 const errorElement = document.createElement('p');
@@ -77,10 +75,6 @@ function initializeApp() {
     setTimeout(() => {
         loadPage('login');
     }, 4 * 1000);
-}
-
-function setBodyStyle() {
-    document.getElementById('content').style.padding = '3rem 5rem';
 }
 
 function changeNavMenu(expand) {
