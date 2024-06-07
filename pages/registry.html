@@ -13,7 +13,7 @@
 
     <div class="input-div-1">
       <img src="../DormirPRO/assets/user.png" onerror="this.onerror=null;this.src='../assets/user.png'" alt="Logo user">
-      <input type="text" name="text" id="text" placeholder="Login">
+      <input type="text" name="login" id="login" placeholder="Nome completo">
     </div>
 
     <div class="input-div-1">
@@ -25,7 +25,7 @@
       <img src="../DormirPRO/assets/senha.png" onerror="this.onerror=null;this.src='../assets/senha.png'" alt="Logo senha">
       <div>
         <input type="password" name="password" id="password" placeholder="Senha">
-        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir">
+        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir" onclick="changePasswordVisibility('password')">
       </div>
     </div>
 
@@ -33,11 +33,11 @@
       <img src="../DormirPRO/assets/senha.png" onerror="this.onerror=null;this.src='../assets/senha.png'" alt="Logo senha">
       <div>
         <input type="password" name="password2" id="password2" placeholder="Confirme senha">
-        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir">
+        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir" onclick="changePasswordVisibility('password2')">
       </div>
     </div>
 
-    <input type="button" value="Log In" onclick="loadPage('home', isComponent=false, header='header', footer='footer')">
+    <input type="button" value="Register" onclick="redirecionarRegistro()">
 
     <span>
       Já é cadastrado?
@@ -175,6 +175,13 @@
   @media (max-width: 799px) {    
     #content {
       padding: 0 !important;
+    }    
+
+    #login-section #container {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0px;
     }
   }
 

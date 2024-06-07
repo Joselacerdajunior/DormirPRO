@@ -5,15 +5,15 @@
   </a>
   <nav>
     <div id="nav-menu">
-      <img id="nav-menu-open" src="../DormirPRO/assets/expandir-menu.png" onerror="this.onerror=null;this.src='../assets/expandir-menu.png'" alt="Expandir Menu" onclick="changeNavMenu(true)">
-      <img id="nav-menu-close" src="../DormirPRO/assets/recolher-menu.png" onerror="this.onerror=null;this.src='../assets/recolher-menu.png'" alt="Recolher Menu" onclick="changeNavMenu(false)">
+      <img id="nav-menu-open" src="../DormirPRO/assets/expandir-menu.png" onerror="this.onerror=null;this.src='../assets/expandir-menu.png'" alt="Expandir Menu" onclick="changeNavMenu(true); switchProfileVisibility(false)">
+      <img id="nav-menu-close" src="../DormirPRO/assets/recolher-menu.png" onerror="this.onerror=null;this.src='../assets/recolher-menu.png'" alt="Recolher Menu" onclick="changeNavMenu(false); switchProfileVisibility(false)">
     </div>
     <ul>
-      <li><a href="#" onclick="loadPage('home')"><img src="../DormirPRO/assets/inicio.png" onerror="this.onerror=null;this.src='../assets/inicio.png'" alt="Ícone Início"><span class="hidden-nav-menu hidden">Início</span></a></li>
-      <li><a href="#" onclick="loadPage('modules')"><img src="../DormirPRO/assets/modulos.png" onerror="this.onerror=null;this.src='../assets/modulos.png'" alt="Ícone Módulos"><span class="hidden-nav-menu hidden">Módulos</span></a></li>
-      <li><a href="#" onclick="loadPage('reports')"><img src="../DormirPRO/assets/relatorios.png" onerror="this.onerror=null;this.src='../assets/relatorios.png'" alt="Ícone Relatórios"><span class="hidden-nav-menu hidden">Relatórios</span></a></li>
-      <li><a href="#" onclick="loadPage('plans')"><img src="../DormirPRO/assets/diamante.png" onerror="this.onerror=null;this.src='../assets/diamante.png'" alt="Ícone Assinatura"><span class="hidden-nav-menu hidden">Assinatura</span></a></li>
-      <li><a href="#" onclick="loadPage('help')"><img src="../DormirPRO/assets/ajuda.png" onerror="this.onerror=null;this.src='../assets/ajuda.png'" alt="Ícone Ajuda"><span class="hidden-nav-menu hidden">Ajuda</span></a></li>
+      <li><a href="#" onclick="loadPage('home'); changeNavMenu(false); switchProfileVisibility(false)"><img src="../DormirPRO/assets/inicio.png" onerror="this.onerror=null;this.src='../assets/inicio.png'" alt="Ícone Início"><span class="hidden-nav-menu hidden">Início</span></a></li>
+      <li><a href="#" onclick="loadPage('modules'); changeNavMenu(false); switchProfileVisibility(false)"><img src="../DormirPRO/assets/modulos.png" onerror="this.onerror=null;this.src='../assets/modulos.png'" alt="Ícone Módulos"><span class="hidden-nav-menu hidden">Módulos</span></a></li>
+      <li><a href="#" onclick="loadPage('reports'); changeNavMenu(false); switchProfileVisibility(false)"><img src="../DormirPRO/assets/relatorios.png" onerror="this.onerror=null;this.src='../assets/relatorios.png'" alt="Ícone Relatórios"><span class="hidden-nav-menu hidden">Relatórios</span></a></li>
+      <li><a href="#" onclick="loadPage('plans'); changeNavMenu(false); switchProfileVisibility(false)"><img src="../DormirPRO/assets/diamante.png" onerror="this.onerror=null;this.src='../assets/diamante.png'" alt="Ícone Assinatura"><span class="hidden-nav-menu hidden">Assinatura</span></a></li>
+      <li><a href="#" onclick="loadPage('help'); changeNavMenu(false); switchProfileVisibility(false)"><img src="../DormirPRO/assets/ajuda.png" onerror="this.onerror=null;this.src='../assets/ajuda.png'" alt="Ícone Ajuda"><span class="hidden-nav-menu hidden">Ajuda</span></a></li>
     </ul>
   </nav>
   <div>
@@ -21,15 +21,23 @@
       <img src="../DormirPRO/assets/notification.png" onerror="this.onerror=null;this.src='../assets/notification.png'" alt="Notificações">
       <span id="notification-number"></span>
     </a>
-    <a href="#" id="profile-link" onclick="loadPage('profile-options', isComponent=true)">
+    <a href="#" id="profile-link" onclick="switchProfileVisibility(true)">
       <div id="profile-text">
         <p>Bem vindo,</p>
-        <span>Default!</span>
+        <span id="nome-usuario-header">Default!</span>
       </div>
       <img src="../DormirPRO/assets/profile-default.png" onerror="this.onerror=null;this.src='../assets/profile-default.png'" alt="Opções de perfil">
+
+      
     </a>
+    <div id="profile-div" class="hidden-pro">
+      <a href="#" onclick="loadPage('profile', isComponent=false); switchProfileVisibility(false); changeNavMenu(false)"><img src="../DormirPRO/assets/profile-default.png" onerror="this.onerror=null;this.src='../assets/profile-default.png'" alt="Meu perfil">Meu perfil</a>
+      <a href="#" onclick="loadPage('configuration', isComponent=false); switchProfileVisibility(false); changeNavMenu(false)"><img src="../DormirPRO/assets/configuracoes.png" onerror="this.onerror=null;this.src='../assets/configuracoes.png'" alt="Configurações">Configurações</a>
+      <a href="#" onclick="disconnectUser(); switchProfileVisibility(false); changeNavMenu(false)"><img src="../DormirPRO/assets/sair.png" onerror="this.onerror=null;this.src='../assets/sair.png'" alt="Sair">Sair</a>
+    </div>
   </div>
-  <div id="nav-out-click-detector" onclick="changeNavMenu(null)"></div>
+  <div id="profile-out-click-detector" class="hidden-pro" onclick="switchProfileVisibility(false); changeNavMenu(false)"></div>
+  <div id="nav-out-click-detector" onclick="changeNavMenu(false); switchProfileVisibility(false)"></div>
 </header>
 
 
@@ -108,7 +116,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
   }
   
   header nav ul li a img {
@@ -170,6 +178,50 @@
     margin-left: .5rem;
   }
 
+  #profile-div {
+    background-color: var(--secondary-color);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(0, 100%);
+    z-index: 10;
+  }
+
+  #profile-div a {
+    text-decoration: none;
+    font-size: .9rem;
+    color: var(--text-white);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 2rem;
+    width: 8rem;
+    margin: 1rem 2rem;
+  }
+
+  #profile-div a img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    margin-right: .7rem;
+    border: none;
+    border-radius: 0px;    
+  }
+
+  #profile-out-click-detector {
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background-color: rgba(0, 0, 0, 0.20);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(0, var(--header-height));
+  }
+
+  .hidden-pro {
+    display: none;
+  }
+
   @media (max-width: 799px) {
     header #nav-out-click-detector {
       display: none;
@@ -188,7 +240,7 @@
       bottom: 0;
       left: 0;
       transform: translateY(100%);
-      height: calc(100vh - var(--header-height) - var(--footer-height));
+      height: calc(100vh - var(--header-height));
       min-width: 3.5rem;
       padding: .5rem 0;
       z-index: 11;
@@ -270,7 +322,7 @@
       bottom: 0;
       left: 0;
       transform: translateY(100%);
-      height: calc(100vh - var(--header-height) - var(--footer-height));
+      height: calc(100vh - var(--header-height));
       min-width: 3.5rem;
       padding: .5rem 0;
       z-index: 11;

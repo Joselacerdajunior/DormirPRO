@@ -1,0 +1,95 @@
+<div id="config-profile">
+  <h1>Configurações de perfil</h1>
+
+  <div id="container-dados">
+    <h3>Dados pessoais</h3>
+    <div class="item">
+      <span>Nome</span>
+      <input type="text" name="name" id="name" placeholder="Nome completo">
+    </div>
+    <div class="item">
+      <span>Email</span>
+      <input type="email" name="email" id="email" placeholder="E-mail cadastrado">
+    </div>
+  </div>
+
+  <div id="container-senha">
+    <h3>Atualização de senha</h3>
+    <div class="item">
+      <span>Senha antiga</span>
+      <input type="password" name="old-password" id="old-password" placeholder="Senha antiga">
+    </div>
+    <div class="item">
+      <span>Nova senha</span>
+      <input type="password" name="new-password" id="new-password" placeholder="Nova senha">
+    </div>
+    <div class="item">
+      <span>Nova senha</span>
+      <input type="password" name="new-password2" id="new-password2" placeholder="Nova senha novamente">
+    </div>
+  </div>
+
+  <input type="button" value="Atualizar dados" onclick="updateProfile(); ">
+</div>
+
+
+<style>
+  #config-profile {    
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+
+  #config-profile h1 {
+    margin-bottom: 2rem;
+  }
+
+  #container-dados,
+  #container-senha {
+    margin-bottom: 2rem;
+  }
+
+  #container-dados h3,
+  #container-senha h3 {
+    margin-bottom: .3rem;
+  }
+
+  #container-dados .item {
+    margin-left: .5rem;
+    display: grid;
+    grid-template-columns: 7rem 25rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #container-senha .item {
+    margin-left: .5rem;
+    display: grid;
+    grid-template-columns: 7rem 25rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #container-dados .item input,
+  #container-senha .item input {
+    height: 2rem;
+    padding-left: .5rem;
+    margin-bottom: .3rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000;
+  }
+
+  #config-profile > input {
+    height: min-content;
+    width: min-content;
+    padding: .8rem 2rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 5px;
+  }
+</style>

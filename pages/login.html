@@ -13,23 +13,23 @@
 
     <div class="input-div-1">
       <img src="../DormirPRO/assets/email.png" onerror="this.onerror=null;this.src='../assets/email.png'" alt="Logo email">
-      <input type="email" name="email" id="email" placeholder="Email">
+      <input type="email" name="email" id="email" placeholder="Email" value="admin@dormirpro.com">
     </div>
 
     <div class="input-div-2">
       <img src="../DormirPRO/assets/senha.png" onerror="this.onerror=null;this.src='../assets/senha.png'" alt="Logo senha">
       <div>
-        <input type="password" name="password" id="password" placeholder="Senha">
-        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir">
+        <input type="password" name="password" id="password" placeholder="Senha" value="admin">
+        <img src="../DormirPRO/assets/exibir.png" onerror="this.onerror=null;this.src='../assets/exibir.png'" alt="Logo exibir" onclick="changePasswordVisibility('password')">
       </div>
     </div>
 
-    <input type="button" value="Log In" onclick="loadPage('home', isComponent=false, header='header', footer='footer')">
+    <input type="button" value="Log In" onclick="redirecionarLogin()">
 
     <span>
       Não tem um cadastro?
       <br>
-      <a href="#" onclick="loadPage('registry')">Clique aqui para se registrar.</a>      
+      <a href="#" onclick="loadPage('registry')">Clique aqui para se registrar.</a>
     </span>
   </div>
 </section>
@@ -161,6 +161,13 @@
   @media (max-width: 799px) {    
     #content {
       padding: 0 !important;
+    }
+
+    #login-section #container {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0px;
     }
   }
 

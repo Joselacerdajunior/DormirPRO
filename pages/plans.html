@@ -1,1 +1,197 @@
-<h1>Assinaturas</h1>
+<div id="container-pacotes">
+
+  <h1>Assinaturas</h1>
+
+  <div id="pacote">
+    <div id="pacote1" class="pacote">
+      <p>BABY BAND</p>
+      <p>Pulseira inteligente para monitoramento de temperatura, sono, saturação, movimentos, choros e ruídos e muito mais.</p>
+      <p>R$ 999,00</p>
+    </div>
+  
+    <div id="pacote2" class="pacote">
+      <p>GADGETS SMART COTS</p>
+      <p>
+        Todos os sensores, câmeras e microfones para tornar o berço do seu bebê inteligente.<br>
+        App para monitoramento e interação.
+      </p>
+      <p>R$ 4.999,00</p>
+    </div>
+  
+    <div id="pacote3" class="pacote">
+      <p>GADGETS SMART COTS PREMIUM</p>
+      <p>
+        Todos os sensores, câmeras e microfones para tornar o berço do seu bebê inteligente.<br>
+        App para monitoramento e interação.<br>
+        Amortecedor para balanço.<br>
+        Displays bebê e mamãe-papai.
+      </p>
+      <p>R$ 6.999,00</p>
+    </div>
+  </div>
+
+  <p>Mais assinatura anual de R$ 500,00 para atualizações.</p>
+</div>
+
+<style>
+  #container-pacotes {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+
+  #container-pacotes > h1 {
+    margin-bottom: 2rem;
+  }
+
+  #pacote {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  #pacote1 p:nth-child(1) {
+    background-color: rgb(129, 77, 255);
+  }
+
+  #pacote2 p:nth-child(1) {
+    background-color: rgb(255, 31, 133);
+  }
+
+  #pacote3 p:nth-child(1) {
+    background-color: rgb(255, 131, 182);
+  }
+
+  #pacote1 {
+    border: 1px solid rgb(129, 77, 255);  
+    display: flex;
+    flex-direction: column;
+  }
+
+  #pacote2 {
+    border: 1px solid rgb(255, 31, 133);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #pacote3 {
+    border: 1px solid rgb(255, 131, 182);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #pacote1 p:nth-child(2) {
+    display: flex;
+    height: max-content;
+    flex: 1;
+    padding: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #pacote2 p:nth-child(2) {
+    display: flex;
+    height: max-content;
+    flex: 1;
+    padding: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #pacote3 p:nth-child(2) {
+    display: flex;
+    height: max-content;
+    flex: 1;
+    padding: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #pacote1 p:nth-child(3) {
+    display: flex;
+    height: min-content;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  #pacote2 p:nth-child(3) {
+    display: flex;
+    height: min-content;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  #pacote3 p:nth-child(3) {
+    display: flex;
+    height: min-content;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  #pacote .pacote {
+    height: 100% !important;
+  }
+
+  #pacote .pacote p:nth-child(1) {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-white);
+    padding: 1rem .8rem;
+    min-height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 799px) {    
+    #pacote {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+    }
+
+    #pacote .pacote p:nth-child(2){
+      padding: 2rem;
+    }    
+
+    #pacote1,
+    #pacote2,
+    #pacote3 {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 1200px) {    
+    #pacote {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    #pacote .pacote p:nth-child(2){
+      padding: 2rem;
+    }
+
+    #pacote1,
+    #pacote2,
+    #pacote3 {
+      width: 100%;
+    }
+
+    #pacote3 {
+      grid-column: 1 / -1;
+    }
+  }
+
+</style>

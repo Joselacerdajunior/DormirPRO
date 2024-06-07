@@ -1,1 +1,80 @@
-<h1>Módulos</h1>
+<div id="modules">
+  <h1>Meus módulos</h1>
+
+  <div id="module-container">
+    <div class="buttons">
+      <input type="button" value="Adicionar">
+
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Local</th>
+          <th class="fixed-width">Online</th>
+          <th>Modelo</th>
+          <th class="fixed-width">Editar</th>
+          <th class="fixed-width">Remover</th>
+        </tr>
+      </thead>
+      <tbody id="td-container"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<style>
+  #modules {
+    text-align: left;
+  }
+
+  #module-container {
+    padding: .7rem;
+    border: 1px solid #ddd;
+  }
+
+  #module-container .buttons {
+    display: flex;
+    justify-content: end;
+  }
+
+  #module-container .buttons input {
+    height: 2rem;
+    padding: .2rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border: none;
+    outline: none;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  th {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    text-align: left;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table img {
+    filter: invert(100%);
+    width: 25px;
+  }
+
+  .fixed-width {
+    width: 5rem;
+    text-align: center;
+  }
+</style>
