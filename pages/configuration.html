@@ -1,1 +1,240 @@
-<h1>Configurações</h1>
+<div id="configuracoes">
+  <div>
+    <span>Ruido branco:</span>
+    <input type="file" name="ruido_branco" id="ruido_branco" accept="audio/mp3">
+  </div>
+  <div>
+    <span>Nome do Bebê:</span>
+    <input type="text" name="babyName" id="babyName">
+  </div>
+  <div>
+    <span>Data de Nascimento:</span>
+    <input type="date" name="birthDate" id="birthDate">
+  </div>
+  <div>
+    <span>Sexo:</span>
+    <select name="gender" id="gender">
+      <option value="male">Masculino</option>
+      <option value="female">Feminino</option>
+    </select>
+  </div>
+  <div>
+    <span>Foto do Bebê:</span>
+    <input type="file" name="babyPhoto" id="babyPhoto" accept="image/*">
+  </div>
+  <div>
+    <span>Ativar Notificações:</span>
+    <input type="checkbox" name="notifications" id="notifications">
+  </div>
+  <div>
+    <span>Horários de Silêncio:</span>
+    <input type="time" name="silentStart" id="silentStart"> a
+    <input type="time" name="silentEnd" id="silentEnd">
+  </div>
+  <div>
+    <span>Tipos de Notificações:</span>
+    <select name="notificationTypes" id="notificationTypes" multiple>
+      <option value="wakeUp">Despertar</option>
+      <option value="interruptedSleep">Sono Interrompido</option>
+      <option value="sleepReminder">Lembrete de Sono</option>
+    </select>
+  </div>
+  <div>
+    <span>Duração Mínima de Sono (min):</span>
+    <input type="number" name="minSleepDuration" id="minSleepDuration" min="0">
+  </div>
+  <div>
+    <span>Duração Máxima de Sono (min):</span>
+    <input type="number" name="maxSleepDuration" id="maxSleepDuration" min="0">
+  </div>
+  <div>
+    <span>Tempo Entre Cochilos (min):</span>
+    <input type="number" name="napInterval" id="napInterval" min="0">
+  </div>
+  <div>
+    <span>Alertas para Horários de Soneca:</span>
+    <input type="checkbox" name="napAlerts" id="napAlerts">
+  </div>
+  <div>
+    <span>Conectar Sensor de Movimento:</span>
+    <input type="checkbox" name="motionSensor" id="motionSensor">
+  </div>
+  <div>
+    <span>Conectar Monitor de Áudio/Vídeo:</span>
+    <input type="checkbox" name="avMonitor" id="avMonitor">
+  </div>
+  <div>
+    <span>Calibrar Dispositivos:</span>
+    <button onclick="calibrateDevices()">Calibrar</button>
+  </div>
+  <div>
+    <span>Teste de Funcionamento dos Dispositivos:</span>
+    <button onclick="testDevices()">Testar</button>
+  </div>
+  <div>
+    <span>Temperatura Ideal (°C):</span>
+    <input type="number" name="idealTemperature" id="idealTemperature" min="0">
+  </div>
+  <div>
+    <span>Nível de Umidade Ideal (%):</span>
+    <input type="number" name="idealHumidity" id="idealHumidity" min="0" max="100">
+  </div>
+  <div>
+    <span>Nível de Ruído Permitido (dB):</span>
+    <input type="number" name="noiseLevel" id="noiseLevel" min="0">
+  </div>
+  <div>
+    <span>Resolução da Câmera:</span>
+    <select name="cameraResolution" id="cameraResolution">
+      <option value="720p">720p</option>
+      <option value="1080p">1080p</option>
+      <option value="4k">4K</option>
+    </select>
+  </div>
+  <div>
+    <span>Ativar Visão Noturna:</span>
+    <input type="checkbox" name="nightVision" id="nightVision">
+  </div>
+  <div>
+    <span>Ajuste de Ângulo e Zoom:</span>
+    <button onclick="adjustCamera()">Ajustar</button>
+  </div>
+  <div>
+    <span>Alertas de Posição:</span>
+    <input type="checkbox" name="positionAlerts" id="positionAlerts">
+  </div>
+  <div>
+    <span>Monitoramento da Respiração:</span>
+    <input type="checkbox" name="breathingMonitor" id="breathingMonitor">
+  </div>
+  <div>
+    <span>Alertas de Temperatura Corporal:</span>
+    <input type="checkbox" name="bodyTempAlerts" id="bodyTempAlerts">
+  </div>
+  <div>
+    <span>Alertas de Posição:</span>
+    <input type="checkbox" name="positionAlerts" id="positionAlerts">
+  </div>
+  <div>
+    <span>Monitoramento da Respiração:</span>
+    <input type="checkbox" name="breathingMonitor" id="breathingMonitor">
+  </div>
+  <div>
+    <span>Alertas de Temperatura Corporal:</span>
+    <input type="checkbox" name="bodyTempAlerts" id="bodyTempAlerts">
+  </div>
+  <div>
+    <span>Período de Armazenamento dos Dados (dias):</span>
+    <input type="number" name="dataStoragePeriod" id="dataStoragePeriod" min="0">
+  </div>
+  <div>
+    <span>Backup Automático:</span>
+    <input type="checkbox" name="autoBackup" id="autoBackup">
+  </div>
+  <div>
+    <span>Exportar Dados:</span>
+    <button onclick="exportData()">Exportar</button>
+  </div>
+  <div>
+    <span>Acesso de Múltiplos Usuários:</span>
+    <input type="checkbox" name="multiUserAccess" id="multiUserAccess">
+  </div>
+  <div>
+    <span>Compartilhar Relatórios com Pediatras:</span>
+    <input type="checkbox" name="shareReports" id="shareReports">
+  </div>
+  <div>
+    <span>Configuração de Rotina Noturna:</span>
+    <textarea name="nightRoutine" id="nightRoutine" rows="4" cols="50"></textarea>
+  </div>
+  <div>
+    <span>Alertas para Atividades da Rotina:</span>
+    <input type="checkbox" name="routineAlerts" id="routineAlerts">
+  </div>
+  <div>
+    <span>Biblioteca de Músicas e Sons Relaxantes:</span>
+    <select name="relaxingSounds" id="relaxingSounds" multiple>
+      <option value="lullaby">Canção de Ninar</option>
+      <option value="whiteNoise">Ruído Branco</option>
+      <option value="natureSounds">Sons da Natureza</option>
+    </select>
+  </div>
+  <div>
+    <span>Adicionar Músicas Personalizadas:</span>
+    <input type="file" name="customMusic" id="customMusic" accept="audio/*" multiple>
+  </div>
+  <div>
+    <span>Ajuste de Volume:</span>
+    <input type="range" name="volume" id="volume" min="0" max="100">
+  </div>
+  <div>
+    <span>Integração com Assistentes Virtuais:</span>
+    <input type="checkbox" name="virtualAssistantIntegration" id="virtualAssistantIntegration">
+  </div>
+  <div>
+    <span>Sincronização com Aplicativos de Saúde:</span>
+    <input type="checkbox" name="healthAppSync" id="healthAppSync">
+  </div>
+  <div>
+    <span>Idioma:</span>
+    <select name="language" id="language">
+      <option value="pt">Português</option>
+      <option value="en">Inglês</option>
+      <option value="es">Espanhol</option>
+    </select>
+  </div>
+  <div>
+    <span>Tema:</span>
+    <select name="theme" id="theme">
+      <option value="light">Claro</option>
+      <option value="dark">Escuro</option>
+    </select>
+  </div>
+  <div>
+    <span>Suporte e Feedback:</span>
+    <button onclick="openSupport()">Abrir Suporte</button>
+  </div>
+  
+</div>
+
+<style>
+#configuracoes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+#configuracoes input,
+#configuracoes textarea,
+#configuracoes button,
+#configuracoes select {
+  height: 2rem;
+  padding: .3rem 1rem;
+  margin-bottom: .4rem;
+}
+
+</style>
+
+
+<script>
+  function calibrateDevices() {
+  alert('Calibrando dispositivos...');
+}
+
+function testDevices() {
+  alert('Testando dispositivos...');
+}
+
+function adjustCamera() {
+  alert('Ajustando câmera...');
+}
+
+function exportData() {
+  alert('Exportando dados...');
+}
+
+function openSupport() {
+  alert('Abrindo suporte...');
+}
+
+</script>

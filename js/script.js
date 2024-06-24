@@ -170,10 +170,6 @@ function runPageFunctions(page) {
 
         case 'home':
             document.getElementById('nome-usuario-header').textContent = capitalizeFirstLetter(especificValue('user'), true);
-
-            document.getElementById('name').value = especificValue('user');
-            document.getElementById('email').value = especificValue('email');
-            document.getElementById('old-password').value = especificValue('password');
             break;
 
         case 'profile':
@@ -195,8 +191,9 @@ function runPageFunctions(page) {
                     <td>${element['local']}</td>
                     <td class="fixed-width">${(element['status'] === true ? '🟢' : '🟠')}</td>
                     <td>${element['model']}</td>
-                    <td class="fixed-width"><img src="../DormirPRO/assets/editar.png" onerror="this.onerror=null;this.src='../assets/editar.png'" alt="Editar" onclick="editModule(${index}); renderModules();"></td>
-                    <td class="fixed-width"><img src="../DormirPRO/assets/lixo.png" onerror="this.onerror=null;this.src='../assets/lixo.png'" alt="Excluir" onclick="removeModule(${index}); renderModules();"></td>
+                    <td class="fixed-width"><img src="../DormirPRO/assets/grafico.png" onerror="this.onerror=null;this.src='../assets/grafico.png'" alt="Grafico" onclick="viewModule(${index});"></td>
+                    <td class="fixed-width"><img src="../DormirPRO/assets/editar.png" onerror="this.onerror=null;this.src='../assets/editar.png'" alt="Editar" onclick="editModule(${index});"></td>
+                    <td class="fixed-width"><img src="../DormirPRO/assets/lixo.png" onerror="this.onerror=null;this.src='../assets/lixo.png'" alt="Excluir" onclick="removeModule(${index});"></td>
                 </tr>
                 `;
             });
@@ -209,7 +206,7 @@ function runPageFunctions(page) {
 }
 
 function initializeApp() {
-    //return loadPage('modules', isComponent=false, header='header', footer='footer');
+    return loadPage('configuration', isComponent=false, header='header', footer='footer');
     //return loadPage('login');
     
     loadPage('start');

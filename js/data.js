@@ -9,8 +9,8 @@ const JSONConfigDefault = {
       other: {
         configuration: [],
         modules: [
-          {local: 'Quarto João', status: true, model: 'Berço com balanço'},
-          {local: 'Quarto Maria', status: false, model: 'Berço com balanço e câmera térmica'},
+          {local: 'Quarto João', status: true, model: 'Gadgets Smart Cots', uuid: 'A216RT4'},
+          {local: 'Quarto Maria', status: false, model: 'Baby Band', uuid: 'B54CQ9'},
         ],
         reports: [],
       }
@@ -18,6 +18,9 @@ const JSONConfigDefault = {
   ],
   connectedUserEmail: null,
 };
+
+var editModuleStatus = false;
+var editModuleIndex = null;
 
 function loadConfig() {
   const savedConfig = localStorage.getItem('JSONConfig');
@@ -83,7 +86,15 @@ function adicionarUsuario() {
   }
 
   JSONConfig.users.push(
-    {user: `${user}`, email: `${email}`, password: `${password}`},
+    {
+      user: `${user}`, 
+      email: `${email}`, 
+      password: `${password}`, 
+      other: {
+        configuration: [],
+        modules: [],
+        reports: [],
+      }},
   );
 
   JSONConfig.connectedUserEmail = email;
@@ -142,11 +153,14 @@ function especificValue(item) {
   if (data === null) { return; }
 
   const keys = item.split('.'); // Divide o caminho do item em partes
+  if (keys.length === 1) {
+    return data[item];
+  }
   return keys.reduce((acc, key) => acc && acc[key], data);
 }
 
-function updateUser(email, updatedData) {
-  const userIndex = JSONConfig.users.findIndex(user => user.email === email);
+/*function updateUser(email, updatedData) {
+  /*const userIndex = JSONConfig.users.findIndex(user => user.email === email);
   if (userIndex !== -1) {
     const existingUser = JSONConfig.users[userIndex];
     JSONConfig.users[userIndex] = { 
@@ -157,6 +171,84 @@ function updateUser(email, updatedData) {
         ...updatedData.other
       }
     };
+    saveConfig(); // Salvar as atualizações no localStorage
+    console.log("Usuário atualizado:", JSONConfig.users[userIndex]);
+  } else {
+    console.log("Usuário não encontrado");
+  }*/
+
+  /*const userIndex = JSONConfig.users.findIndex(user => user.email === email);
+  if (userIndex !== -1) {
+    const existingUser = JSONConfig.users[userIndex];
+    
+    // Combine existing modules with new modules
+    const updatedModules = updatedData.other && updatedData.other.modules 
+      ? [...existingUser.other.modules, ...updatedData.other.modules] 
+      : existingUser.other.modules;
+
+    // Update the user data, ensuring modules are properly combined
+    JSONConfig.users[userIndex] = { 
+      ...existingUser, 
+      ...updatedData,
+      other: {
+        ...existingUser.other,
+        ...updatedData.other,
+        modules: updatedModules // Use combined modules
+      }
+    };
+
+    saveConfig(); // Save the updated configuration to localStorage
+    console.log("Usuário atualizado:", JSONConfig.users[userIndex]);
+  } else {
+    console.log("Usuário não encontrado");
+  }
+}*/
+
+function updateUser(email, updatedData, moduleIndex = null) {
+  const userIndex = JSONConfig.users.findIndex(user => user.email === email);
+  if (userIndex !== -1) {
+    const existingUser = JSONConfig.users[userIndex];
+    
+    if (moduleIndex !== null && moduleIndex !== undefined) {
+      // Atualizar um módulo existente
+      const updatedModules = existingUser.other.modules.map((module, index) => {
+        if (index === moduleIndex) {
+          // Atualize este módulo específico
+          return {
+            ...module,
+            ...updatedData.other.modules[0]
+          };
+        }
+        return module;
+      });
+
+      // Atualize os dados do usuário
+      JSONConfig.users[userIndex] = { 
+        ...existingUser, 
+        other: {
+          ...existingUser.other,
+          ...updatedData.other,
+          modules: updatedModules // Use os módulos atualizados
+        }
+      };
+    } else {
+      // Adicionar um novo módulo
+      const updatedModules = updatedData.other && updatedData.other.modules 
+        ? [...existingUser.other.modules, ...updatedData.other.modules] 
+        : existingUser.other.modules;
+
+      // Atualize os dados do usuário, garantindo que os módulos sejam combinados corretamente
+      JSONConfig.users[userIndex] = { 
+        ...existingUser, 
+        ...updatedData,
+        other: {
+          ...existingUser.other,
+          ...updatedData.other,
+          modules: updatedModules // Use os módulos combinados
+        }
+      };
+    }
+
     saveConfig(); // Salvar as atualizações no localStorage
     console.log("Usuário atualizado:", JSONConfig.users[userIndex]);
   } else {
@@ -188,37 +280,155 @@ function updateProfile() {
 
 // Função para editar o módulo
 function editModule(index) {
-  let module = modules[index];
+  let module = getLoggedData(iAmLogged()).other.modules[index];
   console.log('Editando módulo:', module);
-  // Adicione aqui o código para editar o módulo
+
+  switchModule(true);
+  document.getElementById('local').value = module['local'] == undefined ? '' : module['local'];
+  document.getElementById('uuid').value = module['uuid'] == undefined ? '' : module['uuid'];
+  
+  
+  let ativo = document.querySelectorAll('#ativo');
+  ativo.forEach(element => {
+    element.querySelectorAll('option').forEach(option => {
+      if (option.value == (module['status'] ? 'Sim' : 'Não')) {
+        option.selected = true;
+      }
+    });
+  });
+
+  let modelo = document.querySelectorAll('#modelo');
+  modelo.forEach(element => {
+    element.querySelectorAll('option').forEach(option => {
+      if (option.value == module['model']) {
+        option.selected = true;
+      }
+    });
+  });
+
+  editModuleStatus = true;
+  editModuleIndex = index;
 }
+
+function updateModule() {
+  let module = getLoggedData(iAmLogged()).other.modules[editModuleIndex] || {};
+  console.log(module);
+
+  let local = document.getElementById('local').value;
+  let ativo = document.getElementById('ativo').value;
+  let modelo = document.getElementById('modelo').value;
+  let uuid = document.getElementById('uuid').value;
+
+  if (local == "" || ativo == "" || modelo == "" || uuid == "") {
+    alert("Todos os campos devem ser preenchidos");
+    return;
+  }
+
+  const updatedModule = {
+    local: local, 
+    status: ativo == "Sim" ? true : false, 
+    model: modelo,
+    uuid: uuid,
+  };
+
+  const newModules = {
+    other: {
+      modules: [updatedModule]
+    }
+  };
+
+  updateUser(iAmLogged(), newModules, editModuleIndex);
+  switchModule(false);
+  loadPage('modules');
+}
+
 
 // Função para remover o módulo
 function removeModule(index) {  
+  if (confirm("Deseja excluir este módulo?") != true) {
+    return;
+  }
   let modules = especificValue('other.modules');
   modules.splice(index, 1);
   console.log('Módulo removido:', index);
   // Atualize a exibição da tabela após a remoção
   saveConfig();
-  renderModules();
+  loadPage('modules');
 }
 
-// Função para renderizar os módulos novamente
-function renderModules() {
-  let container = document.getElementById('td-container');
-  let modules = especificValue('other.modules');
-  container.innerHTML = '';
-  modules.forEach((element, index) => {
-      container.innerHTML += `
-      <tr>
-          <td>${element['local']}</td>
-          <td class="fixed-width">${(element['status'] === true ? '✔' : '❌')}</td>
-          <td>${element['model']}</td>
-          <td class="fixed-width"><img src="../DormirPRO/assets/editar.png" onerror="this.onerror=null;this.src='../assets/editar.png'" alt="Editar" onclick="editModule(${index})"></td>
-          <td class="fixed-width"><img src="../DormirPRO/assets/lixo.png" onerror="this.onerror=null;this.src='../assets/lixo.png'" alt="Excluir" onclick="removeModule(${index})"></td>
-      </tr>
-      `;
-  });
+function addModule() {
+  if (editModuleStatus === true) {
+    editModuleStatus = false;
+    return updateModule();
+  }
+
+  let local = document.getElementById('local').value;
+  let ativo = document.getElementById('ativo').value;
+  let modelo = document.getElementById('modelo').value;
+  let uuid = document.getElementById('uuid').value;
+
+  if (local == "" || ativo == "" || modelo == "" || uuid == "") {
+    alert("Todos os campos devem ser preenchidos");
+    return;
+  }
+
+  const newModules = {
+    other: {
+      modules: [
+        {
+          local: local, 
+          status: ativo == "Sim" ? true : false, 
+          model: modelo,
+          uuid: uuid,
+        }
+      ]
+    }
+  };
+
+  updateUser(iAmLogged(), newModules);
+  switchModule(false);
+  loadPage('modules');
+}
+
+function insertModule() {
+  document.getElementById('insert-module').style.display = 'block';
+  let local = document.getElementById('local').value = "";
+  let ativo = document.getElementById('ativo').value = "";
+  let modelo = document.getElementById('modelo').value = "";
+  let uuid = document.getElementById('uuid').value = "";
+}
+
+function switchModule(show) {
+  if (show == false) {
+    document.getElementById('insert-module').style.display = 'none';
+    return;
+  }
+  document.getElementById('insert-module').style.display = 'block';
+  return;
+}
+
+function viewModule(index) {
+  let module = getLoggedData(iAmLogged()).other.modules[index];
+
+  console.log(module);
+
+
+  switch (module.model) {
+    case "Baby Band":
+      loadPage('graph1');
+      break;
+    
+    case "Gadgets Smart Cots":
+      loadPage('graph2');
+      break;
+
+    case "Gadgets Smart Cots Premium":
+      loadPage('graph3');
+      break;
+  
+    default:
+      break;
+  }
 }
 
 

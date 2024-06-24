@@ -3,8 +3,7 @@
 
   <div id="module-container">
     <div class="buttons">
-      <input type="button" value="Adicionar">
-
+      <input type="button" value="Adicionar" onclick="insertModule()">
     </div>
 
     <table>
@@ -13,12 +12,46 @@
           <th>Local</th>
           <th class="fixed-width">Online</th>
           <th>Modelo</th>
+          <th class="fixed-width">Gráficos</th>
           <th class="fixed-width">Editar</th>
           <th class="fixed-width">Remover</th>
         </tr>
       </thead>
       <tbody id="td-container"></tbody>
     </table>
+
+    <div id="insert-module" style="display: none;">
+      <div>
+        <div class="btn0">
+          <label for="local">Local</label>
+          <input type="text" name="local" id="local">
+        </div>
+        <div class="btn0">
+          <label for="ativo">Status</label>
+          <select name="ativo" id="ativo">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+          </select>
+        </div>
+        <div class="btn0">
+          <label for="modelo">Modelo</label>
+          <select name="modelo" id="modelo">
+            <option value="Baby Band">Baby Band</option>
+            <option value="Gadgets Smart Cots">Gadgets Smart Cots</option>
+            <option value="Gadgets Smart Cots Premium">Gadgets Smart Cots Premium</option>
+          </select>
+        </div>
+        <div class="btn0">
+          <label for="uuid">UUID</label>
+          <input type="text" name="uuid" id="uuid">
+          <img id="qrcode-icon" src="../DormirPRO/assets/qrcode.png" onerror="this.onerror=null;this.src='../assets/qrcode.png'" alt="Ler QRCODE">
+        </div>
+        <div class="btn1">
+          <input type="button" value="Salvar" onclick="addModule()">
+          <input type="button" value="Cancelar" onclick="switchModule(false)">
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -71,10 +104,89 @@
   table img {
     filter: invert(100%);
     width: 25px;
+    cursor: pointer;
   }
 
   .fixed-width {
     width: 5rem;
     text-align: center;
   }
+
+  #insert-module {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(5, 5, 5, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+
+  #insert-module > div {
+    background-color: var(--background-color);
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .btn0 {
+    width: 90%;
+    padding: .2rem;
+    display: flex;
+    font-size: .8rem;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .btn0 label {
+    width: 3.5rem;
+  }
+
+  #insert-module > div .btn0 input[type="text"],
+  #insert-module > div .btn0 select {
+    width: 100%;
+    height: 2rem;
+    outline: none;
+    flex: 1;
+  }
+
+  #insert-module > div .btn1 {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 1rem;
+  }
+
+  #insert-module > div .btn1 input[type="button"] {
+    width: 35%;
+    height: 2rem;
+    outline: none;
+  }
+
+  #qrcode-icon {
+    width: 25px;
+    margin-left: .5rem;
+  }
+
+
+  @media (max-width: 799px) {
+    #insert-module > div {
+      height: 100%;
+      width: calc(100% - var(--header-height));
+      padding: 0;
+      right: 0;
+      left: unset;
+      transform: translateY(-50%);
+    }
+  }
+
 </style>

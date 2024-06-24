@@ -28,6 +28,14 @@
       </p>
       <p>R$ 6.999,00</p>
     </div>
+
+    <div id="pacote4" class="pacote">
+      <p>PEDIATRA ONLINE</p>
+      <p>
+        Atendimento online com profissional pediatra qualificado, garantindo melhor controle sobre a saúde da criança.<br>
+      </p>
+      <p>R$ 299,00 / mês</p>
+    </div>
   </div>
 
   <p>Mais assinatura anual de R$ 500,00 para atualizações.</p>
@@ -46,7 +54,7 @@
 
   #pacote {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 23% 23% 23% 23%;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 2rem;
@@ -64,6 +72,10 @@
     background-color: rgb(255, 131, 182);
   }
 
+  #pacote4 p:nth-child(1) {
+    background-color: rgb(81, 161, 49);
+  }
+
   #pacote1 {
     border: 1px solid rgb(129, 77, 255);  
     display: flex;
@@ -78,6 +90,12 @@
 
   #pacote3 {
     border: 1px solid rgb(255, 131, 182);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #pacote4 {
+    border: 1px solid rgb(81, 161, 49);
     display: flex;
     flex-direction: column;
   }
@@ -112,6 +130,16 @@
     text-align: left;
   }
 
+  #pacote4 p:nth-child(2) {
+    display: flex;
+    height: max-content;
+    flex: 1;
+    padding: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
   #pacote1 p:nth-child(3) {
     display: flex;
     height: min-content;
@@ -129,6 +157,14 @@
   }
 
   #pacote3 p:nth-child(3) {
+    display: flex;
+    height: min-content;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  #pacote4 p:nth-child(3) {
     display: flex;
     height: min-content;
     justify-content: center;
@@ -167,7 +203,8 @@
 
     #pacote1,
     #pacote2,
-    #pacote3 {
+    #pacote3,
+    #pacote4 {
       width: 100%;
     }
   }
@@ -185,13 +222,14 @@
 
     #pacote1,
     #pacote2,
-    #pacote3 {
+    #pacote3,
+    #pacote4 {
       width: 100%;
     }
 
-    #pacote3 {
+    /*#pacote3 {
       grid-column: 1 / -1;
-    }
+    }*/
   }
 
 </style>

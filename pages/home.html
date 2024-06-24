@@ -1,1 +1,38 @@
-<h1>Início</h1>
+<div id="home-page">
+  <h1>Seja bem vindo!</h1>
+  <br>
+  <p>Visualize abaixo o resumo obtivo durante as ultimas horas.</p>
+  <br><br>
+
+
+  <div id="graph-container">
+    <p>Arquitetura do sono</p>
+    <img src="../DormirPRO/assets/graph1.png" onerror="this.onerror=null;this.src='../assets/graph1.png'" alt="Grafico">
+    <br>
+    <p>Monitoramento de ronco</p>
+    <img src="../DormirPRO/assets/graph2.png" onerror="this.onerror=null;this.src='../assets/graph2.png'" alt="Grafico">
+    <br>
+    <p>Oxigenação do sangue</p>
+    <img src="../DormirPRO/assets/graph3.png" onerror="this.onerror=null;this.src='../assets/graph3.png'" alt="Grafico">
+    <br>
+    <p>Temperatura corporal</p>
+    <img src="../DormirPRO/assets/graph4.png" onerror="this.onerror=null;this.src='../assets/graph4.png'" alt="Grafico">      
+  </div>
+  
+</div>
+
+<style>
+  #home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+  }
+
+  #graph-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
