@@ -206,7 +206,7 @@ function runPageFunctions(page) {
 }
 
 function initializeApp() {
-    return loadPage('configuration', isComponent=false, header='header', footer='footer');
+    //return loadPage('configuration', isComponent=false, header='header', footer='footer');
     //return loadPage('login');
     
     loadPage('start');
